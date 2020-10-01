@@ -50,9 +50,10 @@ const followersArray = [];
       </div>
     </div>
 */
-function gitApril({
+function gitCard({
   param
 }) {
+  // instantiating the elements
   const card = document.createElement('div')
   const userImg = document.createElement('img')
   const cardInfo = document.createElement('div')
@@ -64,7 +65,31 @@ function gitApril({
   const followers = document.createElement('p')
   const following = document.createElement('p')
   const bio = document.createElement('p')
+
+  // creating hierarchy
+  card.appendChild(userImg)
+  card.appendChild(cardInfo)
+  cardInfo.appendChild(name)
+  cardInfo.appendChild(username)
+  cardInfo.appendChild(location)
+  cardInfo.appendChild(profile)
+  cardInfo.appendChild(followers)
+  cardInfo.appendChild(following)
+  cardInfo.appendChild(bio)
+  profile.appendChild(addressLink)
+
+  // setting class names
+  card.classList.add('card')
+  cardInfo.classList.add('card-info')
+  name.classList.add('name')
+  username.classList.add('username')
+
+  // setting attributes/text
+  userImg.src = param['avatar_url']
+
+  return card
 }
+
 
 /*
   List of LS Instructors Github username's:
