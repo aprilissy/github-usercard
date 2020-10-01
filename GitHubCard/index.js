@@ -86,6 +86,15 @@ function gitCard({
 
   // setting attributes/text
   userImg.src = param['avatar_url']
+  name.textContent = param.name
+  username.textContent = param.login
+  location.textContent = `Location: ${param.location}`
+  profile.textContent = `Profile: `
+  addressLink.href = param.url
+  addressLink.textContent = param.url
+  followers.textContent = param.followers
+  following.textContent = param.followers
+  bio.textContent = param.bio
 
   return card
 }
