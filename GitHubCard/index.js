@@ -44,15 +44,15 @@ const cards = document.querySelector('.cards')
     user, and adding that card to the DOM.
 */
 
-const followersArray = [tetondan,
-  dustinmyers,
-  justsml,
-  luishrd,
-  bigknell
+const followersArray = ['tetondan',
+  'dustinmyers',
+  'justsml',
+  'luishrd',
+  'bigknell'
 ];
 
 followersArray.forEach(follower => {
-  axios.get(`https://api.github.com/users/${follower}`)
+  axios.get('https://api.github.com/users/' + follower)
     .then(res => {
       console.log(res.data)
       const data = res.data
