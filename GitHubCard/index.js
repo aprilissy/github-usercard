@@ -4,6 +4,7 @@ import axios from 'axios';
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
+
 axios.get('https://api.github.com/users/aprilissy')
   /*
     STEP 2: Inspect and study the data coming back, this is YOUR
@@ -21,9 +22,8 @@ axios.get('https://api.github.com/users/aprilissy')
   .then(res => {
     console.log(res.data)
     const data = res.data
-    const gitCard = gitCardMaker({
-      data
-    })
+    console.log(data.type)
+    const gitCard = gitCardMaker(data)
     console.log(gitCard)
     cards.appendChild(gitCard)
   })
@@ -32,6 +32,7 @@ axios.get('https://api.github.com/users/aprilissy')
   })
 
 const cards = document.querySelector('.cards')
+
 /*
   STEP 5: Now that you have your own card getting added to the DOM, either
     follow this link in your browser https://api.github.com/users/<Your github name>/followers,
@@ -43,7 +44,28 @@ const cards = document.querySelector('.cards')
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = [tetondan,
+  dustinmyers,
+  justsml,
+  luishrd,
+  bigknell
+];
+
+followersArray.forEach(follower => {
+  axios.get(`https://api.github.com/users/${follower}`)
+    .then(res => {
+      console.log(res.data)
+      const data = res.data
+      console.log(data.type)
+      const gitCard = gitCardMaker(data)
+      console.log(gitCard)
+      cards.appendChild(gitCard)
+    })
+    .catch(err => {
+      debugger
+    })
+})
+
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -64,9 +86,7 @@ const followersArray = [];
       </div>
     </div>
 */
-function gitCardMaker({
-  param
-}) {
+function gitCardMaker(param) {
   // instantiating the elements
   const card = document.createElement('div')
   const userImg = document.createElement('img')
