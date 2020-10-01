@@ -5,19 +5,33 @@ import axios from 'axios';
     https://api.github.com/users/<your name>
 */
 axios.get('https://api.github.com/users/aprilissy')
-/*
-  STEP 2: Inspect and study the data coming back, this is YOUR
-    github info! You will need to understand the structure of this
-    data in order to use it to build your component function
+  /*
+    STEP 2: Inspect and study the data coming back, this is YOUR
+      github info! You will need to understand the structure of this
+      data in order to use it to build your component function
 
-    Skip to STEP 3.
-*/
+      Skip to STEP 3.
+  */
 
-/*
-  STEP 4: Pass the data received from Github into your function,
-    and append the returned markup to the DOM as a child of .cards
-*/
+  /*
+    STEP 4: Pass the data received from Github into your function,
+      and append the returned markup to the DOM as a child of .cards
+  */
 
+  .then(res => {
+    console.log(res.data)
+    const data = res.data
+    const gitCard = gitCardMaker({
+      data
+    })
+    console.log(gitCard)
+    cards.appendChild(gitCard)
+  })
+  .catch(err => {
+    debugger
+  })
+
+const cards = document.querySelector('.cards')
 /*
   STEP 5: Now that you have your own card getting added to the DOM, either
     follow this link in your browser https://api.github.com/users/<Your github name>/followers,
@@ -50,7 +64,7 @@ const followersArray = [];
       </div>
     </div>
 */
-function gitCard({
+function gitCardMaker({
   param
 }) {
   // instantiating the elements
